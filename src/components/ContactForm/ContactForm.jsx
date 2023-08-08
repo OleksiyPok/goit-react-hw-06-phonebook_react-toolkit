@@ -22,14 +22,12 @@ const ContactForm = () => {
       .toLowerCase()
       .split(' ');
 
-    const normSentence = wordsArr
+    return wordsArr
       .map(word => {
         const [first, ...rest] = word;
         return first.toUpperCase() + rest.join('');
       })
       .join(' ');
-
-    return normSentence;
   };
 
   const handleSubmit = e => {
