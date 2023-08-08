@@ -1,4 +1,4 @@
-import { createAction } from '@reduxjs/toolkit';
+import { createAction, createReducer } from '@reduxjs/toolkit';
 
 const contactsInitialState = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -10,17 +10,30 @@ const contactsInitialState = [
 export const addContact = createAction('contact/add');
 export const deleteContact = createAction('contact/del');
 
-// export const contactsReducer = createReducer(contactsInitialState, builder =>
-//   builder
-//     .addCase(add, (state, action) => {
-//       return [...state, action.payload];
-//     })
-//     .addCase(del, (state, action) => {
-//       return state.filter(contact => contact.id !== action.payload);
-//     })
-// );
+export const contactsReducer = createReducer(contactsInitialState, builder =>
+  builder
+    .addCase(addContact, (state, action) => {
+      state.push(action.payload);
+    })
+    .addCase(deleteContact, (state, action) => {
+      return state.filter(contact => contact.id !== action.payload);
+    })
+);
 
 //------------------------------------------------------
+
+// export const contactsReducer = createReducer(contactsInitialState, {
+//   [addContact]: (state, action) => {
+//     // return [...state, action.payload];
+//     state.push(action.payload);
+//   },
+//   [deleteContact]: (state, action) => {
+//     return state.filter(contact => contact.id !== action.payload);
+//   },
+// });
+
+//------------------------------------------------------
+
 // const contactsInitialState = [
 //   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
 //   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
@@ -37,18 +50,18 @@ export const deleteContact = createAction('contact/del');
 
 // export const deleteContact = contact => {
 //   return {
-//     type: 'contact/delete',
+//     type: 'contact/del',
 //     payload: contact,
 //   };
 // };
 
-export const contactsReducer = (state = contactsInitialState, action) => {
-  switch (action.type) {
-    case 'contact/add':
-      return [...state, action.payload];
-    case 'contact/del':
-      return state.filter(contact => contact.id !== action.payload);
-    default:
-      return state;
-  }
-};
+// export const contactsReducer = (state = contactsInitialState, action) => {
+//   switch (action.type) {
+//     case 'contact/add':
+//       return [...state, action.payload];
+//     case 'contact/del':
+//       return state.filter(contact => contact.id !== action.payload);
+//     default:
+//       return state;
+//   }
+// };
