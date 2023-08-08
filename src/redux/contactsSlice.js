@@ -1,4 +1,5 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+// import { createAction, createReducer } from '@reduxjs/toolkit';
 
 const contactsInitialState = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -7,20 +8,40 @@ const contactsInitialState = [
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 
-export const addContact = createAction('contact/add');
-export const deleteContact = createAction('contact/del');
-
-export const contactsReducer = createReducer(contactsInitialState, builder =>
-  builder
-    .addCase(addContact, (state, action) => {
+const contactsSlice = createSlice({
+  name: 'contact',
+  initialState: contactsInitialState,
+  reducers: {
+    addContact(state, action) {
       state.push(action.payload);
-    })
-    .addCase(deleteContact, (state, action) => {
+    },
+    deleteContact(state, action) {
       return state.filter(contact => contact.id !== action.payload);
-    })
-);
+    },
+  },
+});
+
+export const { addContact, deleteContact } = contactsSlice.actions;
+export const contactsReducer = contactsSlice.reducer;
 
 //------------------------------------------------------
+// REDUX-TOOLKIT (with builder, module 6.2 lesson)
+
+// export const addContact = createAction('contact/add');
+// export const deleteContact = createAction('contact/del');
+
+// export const contactsReducer = createReducer(contactsInitialState, builder =>
+//   builder
+//     .addCase(addContact, (state, action) => {
+//       state.push(action.payload);
+//     })
+//     .addCase(deleteContact, (state, action) => {
+//       return state.filter(contact => contact.id !== action.payload);
+//     })
+// );
+
+//------------------------------------------------------
+// REDUX-TOOLKIT (without builder, module 6.2)
 
 // export const contactsReducer = createReducer(contactsInitialState, {
 //   [addContact]: (state, action) => {
@@ -33,6 +54,7 @@ export const contactsReducer = createReducer(contactsInitialState, builder =>
 // });
 
 //------------------------------------------------------
+// REDUX
 
 // const contactsInitialState = [
 //   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
