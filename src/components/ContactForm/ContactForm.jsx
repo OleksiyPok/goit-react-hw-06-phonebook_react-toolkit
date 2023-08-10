@@ -42,7 +42,7 @@ const ContactForm = () => {
       number: number.value,
     };
 
-    if (contacts.some(person => newContact.name === person.name)) {
+    if (contacts.contactsList.some(person => newContact.name === person.name)) {
       toast.error(`${newContact.name} is already in contacts.`);
     } else {
       dispatch(addContact(newContact));

@@ -32,5 +32,3 @@ export const persistor = persistStore(store);
 //     filter: filterReducer,
 //   },
 // });
-
-// export const persistor = persistStore(store);

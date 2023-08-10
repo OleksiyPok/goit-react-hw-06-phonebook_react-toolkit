@@ -12,7 +12,7 @@ import {
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(state => state.contacts.contactsList);
   const filterKey = useSelector(state => state.filter.filterKey);
 
   const handleOnDelete = contact => {
