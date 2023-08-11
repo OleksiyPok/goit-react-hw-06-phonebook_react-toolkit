@@ -13,7 +13,7 @@ import {
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contactsList = useSelector(state => state.contacts.contactsList);
 
   const normalize = sentence => {
     const wordsArr = sentence
@@ -42,7 +42,7 @@ const ContactForm = () => {
       number: number.value,
     };
 
-    if (contacts.contactsList.some(person => newContact.name === person.name)) {
+    if (contactsList.some(person => newContact.name === person.name)) {
       toast.error(`${newContact.name} is already in contacts.`);
     } else {
       dispatch(addContact(newContact));

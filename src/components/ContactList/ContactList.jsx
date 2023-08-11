@@ -1,5 +1,6 @@
 import { deleteContact } from 'redux/contactsSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { stateFilterKey } from 'redux/filterSlice';
 
 import { toast } from 'react-toastify';
 
@@ -13,7 +14,7 @@ import {
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.contactsList);
-  const filterKey = useSelector(state => state.filter.filterKey);
+  const filterKey = useSelector(stateFilterKey);
 
   const handleOnDelete = contact => {
     dispatch(deleteContact(contact.id));

@@ -39,3 +39,5 @@ export const contactsReducer = persistReducer(
   persistConfig,
   contactsSlice.reducer
 );
+
+// export const stateConactsList = state => state.contacts.contactsList;
