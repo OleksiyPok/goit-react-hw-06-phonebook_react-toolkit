@@ -18,7 +18,7 @@ const ContactList = () => {
 
   const handleOnDelete = contact => {
     dispatch(deleteContact(contact.id));
-    toast.info(`Contact "${contact.name}" has been deleted.`);
+    toast.success(`Contact "${contact.name}" has been deleted.`);
   };
 
   const getFilteredContacts = () => {
